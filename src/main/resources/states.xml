@@ -2,7 +2,10 @@
 
 <ussd>
     <state name = "Start" type="INPUT">
-        <next_state>MainMenu</next_state>
+        <variable>start_ussd</variable>
+        
+        <next_state_variable>start_ussd</next_state_variable>
+        <var_5852>MainMenu</var_5852> <!-- var_(value) -->
     </state>
     <state name = "MainMenu" type="INPUT">
         <menu>1.Weather\n2.Exit</menu>
