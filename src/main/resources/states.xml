@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ussd>
+    <state name = "Start" type="INPUT">
+        <next_state>MainMenu</next_state>
+    </state>
+    <state name = "MainMenu" type="INPUT">
+        <menu>1.Weather\n2.Exit</menu>
+        <!-- This variable set to response of user to this menu and add to session 
+        parameres for future using -->
+        <variable>var1</variable>
+        
+        <next_state_variable>var1</next_state_variable>
+        <var_1>GetCity</var_1> <!-- var_(value) -->
+        <var_2>ExitState</var_2>
+        <var_else>ErrorState</var_else>
+    </state>
+    
+    <state name = "GetCity" type="INPUT">
+        <menu>Enter city name:</menu>
+        <variable>city</variable>
+        <next_state>GetCountry</next_state>
+    </state>
+    <state name = "GetCountry" type="INPUT">
+        <menu>Enter city name:</menu>
+        <variable>country</variable>
+        <next_state>Service</next_state>
+    </state>
+        
+    <state name = "Service" type="SERVICE">
+        <!-- use &amp; in place of & -->
+        <url>http://api.openweathermap.org/data/2.5/weather?appid=44db6a862fba0b067b1930da0d769e98&amp;q=!city!,!country!</url>
+        <connection_timeout>10000</connection_timeout>
+        <socket_timeout>10000</socket_timeout>
+        <next_state>ShowResult</next_state>
+    </state>
+    
+    <state name = "ShowResult" type="END">
+        <menu>City:!city!\nCountry:!country!\nTemp:!main.temp! C</menu>
+    </state>
+    <state name = "ExitState" type="END">
+        <menu>Tnx</menu>
+    </state>
+    <state name = "ErrorState" type="END">
+        <menu>Error</menu>
+    </state>
+</ussd>

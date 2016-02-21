@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="USSD.Parameter.phone">phone</entry>
+    <entry key="USSD.Parameter.action">action</entry>
+    <entry key="USSD.Parameter.message">content</entry>
+    <entry key="USSD.Parameter.sessionID">sessionid</entry>
+    
+    <entry key="USSD.Parameter.action.START">1</entry>
+    <entry key="USSD.Parameter.action.CONTINUE">2</entry>
+    <entry key="USSD.Parameter.action.END">3</entry>
+    <entry key="USSD.Parameter.action.ERROR">4</entry>
+    <entry key="USSD.Parameter.action.FORWARD">5</entry>
+    
+</properties>
