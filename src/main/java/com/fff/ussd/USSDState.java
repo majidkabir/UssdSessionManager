@@ -1,12 +1,9 @@
 package com.fff.ussd;
 
-import com.codesnippets4all.json.generators.JSONGenerator;
-import com.codesnippets4all.json.generators.JsonGeneratorFactory;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 import org.apache.http.client.fluent.Content;

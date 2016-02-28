@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.apache.log4j.Logger;
 
 /**
  *
@@ -19,6 +20,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "USSD", urlPatterns = {"/USSD"})
 public class USSD extends HttpServlet {
+    
+    private static final Logger logger = Logger.getRootLogger();
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,7 +43,9 @@ public class USSD extends HttpServlet {
         String message = request.getParameter(config.getParameter("USSD.Parameter.message", "message"));
         String sessionID = request.getParameter(config.getParameter("USSD.Parameter.sessionID", "sessionid"));
         
+        logger.debug("Request: (phone=" + phone + ", action=" + action + ", message=" + message + ", sessionid=" + sessionID);
         String res = manager.onReceivedMessage(phone, action, message, sessionID);
+        logger.debug("Response: " + res);
         
         response.setContentType("application/json;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {

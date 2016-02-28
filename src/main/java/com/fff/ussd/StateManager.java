@@ -8,11 +8,10 @@ package com.fff.ussd;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import org.apache.log4j.Logger;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -38,6 +37,9 @@ public class StateManager {
     // <SessionID, Session>
     private Map<String, USSDSession> sessionsMap = new HashMap<>();
     private static StateManager instance;
+
+    private static final Logger logger = Logger.getRootLogger();
+
     Config config = Config.getInstance();
 
     public StateManager() {
@@ -51,8 +53,11 @@ public class StateManager {
         try {
             this.ussdStatesMap = loadStates();
         } catch (SAXException ex) {
+            logger.error("SAX exception on 'states.xml'!");
         } catch (IOException ex) {
+            logger.error("Can't open state file!");
         } catch (ParserConfigurationException ex) {
+            logger.error("Can't parse state file");
         }
     }
 

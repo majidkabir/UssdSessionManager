@@ -3,8 +3,7 @@ package com.fff.ussd;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 
 /**
  *
@@ -13,6 +12,7 @@ import java.util.logging.Logger;
 public class Config {
     
     private Properties properties = new Properties();
+    private static final Logger logger = Logger.getRootLogger();
     
     private static Config instance;
     
@@ -33,9 +33,9 @@ public class Config {
         try {
             properties.loadFromXML(getClass().getResourceAsStream("/config.xml"));
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(Config.class.getName()).log(Level.SEVERE, null, ex);
+            logger.error("Config file not found!");
         } catch (IOException ex) {
-            Logger.getLogger(Config.class.getName()).log(Level.SEVERE, null, ex);
+            logger.error("Can't open config file!");
         }        
     }
     
